@@ -1,35 +1,5 @@
 //**************************************************************************************************
 //
-// PROJECT      : Computaion of Conditional in the Dempster-Shafer belief theoretic framework 
-// CLASS        : CondMatrix 
-// PURPOSE      : To perform computations on a conditional computation matrix 
-//
-//**************************************************************************************************
-// 
-// Copyright(C) 2016 ProFuSE Lab, College of Engineering, University of Miami
-// All rights reserved. 
-// 
-// This is unpublished proprietary Source Code of ProFuSE Lab.
-//
-// This copy of the Source Code is intended for ProFuSE Lab's research use only and is intended for
-// view by persons duly authorized by the ProFuSE Lab. No part of this file may reproduced or
-// distributed in any form or by any means without the written approval of the ProFuSE Lab. 
-//
-//**************************************************************************************************
-//
-// REVISIONS
-// 
-// Date                 Researcher              Descriptions
-// -------------------  -------------------     -------------------
-// April 2016          	Lalintha Polpitiya     	Initial experiment 
-// August 2016         	Lalintha Polpitiya     	Condtional computation matrix 
-// September 2016      	Lalintha Polpitiya     	DS-Alpha scheme	
-
-//
-//**************************************************************************************************
-
-//**************************************************************************************************
-//
 // PROJECT  : DS-Condtional-One and DS-Conditional-All 
 // CLASS    : CondMatrix 
 // PURPOSE  : Simulate
