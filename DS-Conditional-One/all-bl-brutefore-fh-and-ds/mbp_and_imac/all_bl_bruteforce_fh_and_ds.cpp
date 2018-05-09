@@ -111,15 +111,19 @@ int main()
 					}
 					*/
 					
-					
 					cond_begin = clock();
-					belief_index = cond_matrix.fillingConditionedVecRandom(b_param);
-					blB = cond_matrix.calBeliefB();
-					compA = cond_matrix.calBeliefComp();
-					strad = cond_matrix.calStrad();
-					nlz = cond_matrix.getNConst();
-					condBelief = blB / (nlz - compA - strad);
-					beliefs[belief_index] = condBelief;
+          if (b_param.size() == a)
+            beliefs[(int)pow(2, a) - 1] = 1;
+          else
+          {
+            belief_index = cond_matrix.fillingConditionedVecRandom(b_param);
+            blB = cond_matrix.calBeliefB();
+            compA = cond_matrix.calBeliefComp();
+            strad = cond_matrix.calStrad();
+            nlz = cond_matrix.getNConst();
+            condBelief = blB / (nlz - compA - strad);
+            beliefs[belief_index] = condBelief;
+          }
 					cond_end = clock();
 				//	cout << "Fod size : " << fod <<  "\t|A| : " << a << "\t|B| : " << b << "\tBl (B) :" << blB << "\t Nlz : " << nlz << "\t Bl ({A}) : " << compA << "\tS({A};B) : " << strad << "\tCond Belief : " << condBelief << endl;
 					//cout << round_count << endl;
