@@ -86,10 +86,10 @@ int main()
               condBelief = blB / (nlz - compA - strad);
             }
 						cond_end = clock();
-            if (a == b)
-              cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t|B|: " << b << "\tFH Cond Belief: " << condBelief << endl;
-            else
-              cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t|B|: " << b << "\tBl (B):" << blB / nlz << "\t Nlz: " << nlz << "\t Bl ({A}): " << compA / nlz << "\tS({A};B): " << strad / nlz << "\tFH Cond Belief: " << condBelief << endl;
+            // if (a == b)
+              // cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t|B|: " << b << "\tFH Cond Belief: " << condBelief << endl;
+            // else
+              // cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t|B|: " << b << "\tBl (B):" << blB / nlz << "\t Nlz: " << nlz << "\t Bl ({A}): " << compA / nlz << "\tS({A};B): " << strad / nlz << "\tFH Cond Belief: " << condBelief << endl;
 
 						round_count++;
 						//cout << round_count << endl;
