@@ -1,9 +1,9 @@
 //**************************************************************************************************
 //
-// PROJECT	: Data Structures for Efficient Computation of the Dempster-Shafer Evidential
+// PROJECT  : Data Structures for Efficient Computation of the Dempster-Shafer Evidential
 //     Calculations and Visualization of Imperfect Data
-// CLASS	  : DSVector 
-// PURPOSE	: Vector Implementation
+// CLASS    : DSVector 
+// PURPOSE  : Vector Implementation
 //
 //**************************************************************************************************
 // 
