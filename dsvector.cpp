@@ -25,11 +25,11 @@
 //
 // REVISIONS
 // 
-// Date			            Researcher		        Descriptions
-// -------------------	-------------------  	-------------------
-// August 2015		      Lalintha Polpitiya	  Vector Implementation
-// March 2016		        Lalintha Polpitiya	  Lookup table
-// May 2018             Lalintha Polpitiya    Optimizations
+// Date                   Researcher              Descriptions
+// --------------------   --------------------    --------------------
+// August 2015            Lalintha Polpitiya      Vector Implementation
+// March 2016             Lalintha Polpitiya      Lookup table
+// May 2018               Lalintha Polpitiya      Optimizations
 //
 //**************************************************************************************************
 
