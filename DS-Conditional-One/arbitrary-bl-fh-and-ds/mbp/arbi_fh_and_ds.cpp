@@ -57,28 +57,40 @@ int main()
 		//	cond_matrix.printFocalElements();
 			for (int arounds = 0; arounds < 1; arounds++)
 			{       
-				for (int b = 1; b < a; b = b + 1)
+				for (int b = 1; b <= a; b = b + 1)
 				{       
 					for (int brounds = 0; brounds < 20400 / ((fod - 1) * (fod - 1)); brounds++)
 					{       
-						b_param.clear();
-						for (int fill = 0; fill < a; fill++)
-							b_param.push_back(fill);
-						for (int rem = 1; rem <= a - b; rem++)
-						{
-							rem_ele = rand() % (a + 1 - rem);
-							b_param.erase (b_param.begin() + rem_ele);
-						}
+            if (a != b)
+            {
+              b_param.clear();
+              for (int fill = 0; fill < a; fill++)
+                b_param.push_back(fill);
+              for (int rem = 1; rem <= a - b; rem++)
+              {
+                rem_ele = rand() % (a + 1 - rem);
+                b_param.erase (b_param.begin() + rem_ele);
+              }
+            }
 						
 						cond_begin = clock();
-						cond_matrix.fillingConditionedVecRandom(b_param);
-						blB = cond_matrix.calBeliefB();
-						compA = cond_matrix.calBeliefComp();
-						strad = cond_matrix.calStrad();
-						nlz = cond_matrix.getNConst();
-						condBelief = blB / (nlz - compA - strad);
+            if (a == b)
+              condBelief = 1;
+            else
+            {
+              cond_matrix.fillingConditionedVecRandom(b_param);
+              blB = cond_matrix.calBeliefB();
+              compA = cond_matrix.calBeliefComp();
+              strad = cond_matrix.calStrad();
+              nlz = cond_matrix.getNConst();
+              condBelief = blB / (nlz - compA - strad);
+            }
 						cond_end = clock();
-					//	cout << "Fod size : " << fod <<  "\t|A| : " << a << "\t|B| : " << b << "\tBl (B) :" << blB << "\t Nlz : " << nlz << "\t Bl ({A}) : " << compA << "\tS({A};B) : " << strad << "\tCond Belief : " << condBelief << endl;
+            // if (a == b)
+              // cout << "Fod size : " << fod <<  "\t|A| : " << a << "\t|B| : " << b << "\tCond Belief : " << condBelief << endl;
+            // else
+              // cout << "Fod size : " << fod <<  "\t|A| : " << a << "\t|B| : " << b << "\tBl (B) :" << blB << "\t Nlz : " << nlz << "\t Bl ({A}) : " << compA << "\tS({A};B) : " << strad << "\tCond Belief : " << condBelief << endl;
+
 						round_count++;
 						//cout << round_count << endl;
 						total_time += (double)(cond_end - cond_begin) / CLOCKS_PER_SEC; 

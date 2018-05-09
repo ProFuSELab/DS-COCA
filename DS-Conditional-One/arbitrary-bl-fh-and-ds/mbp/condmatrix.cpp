@@ -52,7 +52,7 @@ CondMatrix::CondMatrix(void)
 	focal_element.assign(pow(2, 10), row);
 	REGAP_index.assign(pow(2, 20), 0);
 	int power_of_i = 1;
-	for (int i = 0; i < no_singletons; i++)
+	for (int i = 0; i <= no_singletons; i++)
 	{
 		power.push_back(power_of_i);
 		power_of_i *= 2;
@@ -321,7 +321,7 @@ double CondMatrix::calBeliefB(void)
 		}
 	}
 	
-	subsets = pow(2, no_sin_conditioned);
+	subsets = power[no_sin_conditioned];
 
 	if (debug)
 	{
@@ -345,8 +345,10 @@ double CondMatrix::calBeliefB(void)
 double CondMatrix::calBeliefComp(void)
 {
 	double belief = 0.0;
+  int size_of_regap_abar = power[no_sin_complement];
+  // cout << "Size of regap abar : " << size_of_regap_abar << endl;
 
-	for (int i = 0; i < pow(2, no_sin_complement); i++)
+	for (int i = 1; i < size_of_regap_abar; i++)
 	{
 		belief += focal_element[i][0];
 	}
@@ -361,8 +363,8 @@ double CondMatrix::calStrad(void)
 	double strad = 0.0;
 	int subsets_row = 0, subsets_col = 0, REGAP_col = 0;
 
-	subsets_col = pow(2, no_sin_conditioned);
-	subsets_row = pow(2, no_sin_complement);
+	subsets_col = power[no_sin_conditioned];
+	subsets_row = power[no_sin_complement];
 
 	for (int i = 0; i < subsets_col - 1; i++)
 	{
