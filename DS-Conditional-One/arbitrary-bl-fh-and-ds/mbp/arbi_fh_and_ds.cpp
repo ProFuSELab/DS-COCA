@@ -86,10 +86,10 @@ int main()
               condBelief = blB / (nlz - compA - strad);
             }
 						cond_end = clock();
-            // if (a == b)
-              // cout << "Fod size : " << fod <<  "\t|A| : " << a << "\t|B| : " << b << "\tCond Belief : " << condBelief << endl;
-            // else
-              // cout << "Fod size : " << fod <<  "\t|A| : " << a << "\t|B| : " << b << "\tBl (B) :" << blB << "\t Nlz : " << nlz << "\t Bl ({A}) : " << compA << "\tS({A};B) : " << strad << "\tCond Belief : " << condBelief << endl;
+            if (a == b)
+              cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t|B|: " << b << "\tFH Cond Belief: " << condBelief << endl;
+            else
+              cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t|B|: " << b << "\tBl (B):" << blB / nlz << "\t Nlz: " << nlz << "\t Bl ({A}): " << compA / nlz << "\tS({A};B): " << strad / nlz << "\tFH Cond Belief: " << condBelief << endl;
 
 						round_count++;
 						//cout << round_count << endl;
@@ -100,7 +100,7 @@ int main()
 				//cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t\tTime spent: " << total_time * 1000 / (a - 1) << endl; // to get values in micro sec multiplied by 1000000 and divided by 1000
 			}
 		}
-		cout << "Fod size: " << fod << "\tRounds: " << round_count << "\t\tAverage Time spent: " << (total_time / round_count) * 1000000 << endl; // to get values in micro sec multiplied by 1000000 and divided by 1000
+		cout << "Fod size: " << fod << "\tRounds: " << round_count << "\tAverage Time spent: " << (total_time / round_count) * 1000000 << " microseconds" << endl; // to get values in microseconds multiplied by 1000000
 	}
         return 0;
 }
