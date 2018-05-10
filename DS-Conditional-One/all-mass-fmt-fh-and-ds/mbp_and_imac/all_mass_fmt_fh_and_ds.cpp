@@ -73,7 +73,7 @@ int main()
 	cond_matrix.debugOff();
 
 	// for (int fod = 5; fod <= 20; fod += 5)
-	for (int fod = 2; fod <= 6; fod += 2)
+	for (int fod = 2; fod <= 12; fod += 2)
 	{       
 		round_count = 0;
 		total_time = 0.0;
@@ -83,9 +83,9 @@ int main()
 			cond_matrix.clearMatrix();
 			cond_matrix.newMatrix(fod - a, a);
 			cond_matrix.genIncreasingMassValues();
-      cout << "Fod size: " << fod << " |A|: " << a << endl;
+      // cout << "Fod size: " << fod << " |A|: " << a << endl;
 		  // cond_matrix.printFocalElements();
-      cond_matrix.printFocalElementsNormalized();
+      // cond_matrix.printFocalElementsNormalized();
 			all_bs.clear();
 			for (int t = 1; t <= a; t++)
 				new_arr(0, a, t); 
@@ -133,8 +133,10 @@ int main()
 					//cout << "Index : " << belief_index << "\t Cond Belief : " << condBelief << endl;
 				}
 			//	cout << all_bs.size() << "\t" << total_time << "\t" << endl;
+      /*
 				for (int m = 0; m <= all_bs.size(); m++)
 					cout << m << " : " << beliefs[m] << endl;
+          */
 				//cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t|B|: " << b << "\t\tTime spent: " << total_time * 1000000 << endl; // to get values in micro sec multiplied by 1000000 and divided by 1000
 				//}
 				//cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t\tTime spent: " << total_time * 1000 / (a - 1) << endl; // to get values in micro sec multiplied by 1000000 and divided by 1000
@@ -144,6 +146,7 @@ int main()
 					for (int j = 0; j * cond_matrix.getPower(i) < cond_matrix.getPower(a); j += 2) 
 						for (int k = 0; k < cond_matrix.getPower(i); k++)
 							beliefs[j * cond_matrix.getPower(i) + k + cond_matrix.getPower(i)] -= beliefs[j * cond_matrix.getPower(i) + k];
+          /*
 					double test_tot = 0;
 					for (int m = 0; m < pow(2, a); m++)
 					{
@@ -152,6 +155,7 @@ int main()
 					}
 					cout << endl;
 					cout << test_tot << "..." << endl;
+          */
 				}
 				cond_end = clock();
 				total_time += (double)(cond_end - cond_begin) / CLOCKS_PER_SEC; 
