@@ -53,7 +53,8 @@ class CondMatrix
 		void debugOn(void);
 		void debugOff(void);
 		void readSingletons(void);
-		int fillingConditionedVecRandom(std::vector<int> & conditionedVec);
+		int fillingConditionedVec(std::vector<int> & conditionedVec);
+		int fillingConditionedVecRetBlIndex(std::vector<int> & conditionedVec);
 		void genRandomMassValues(void);
 		void genIncreasingMassValues(void);
 		double getNConst(void);

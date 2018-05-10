@@ -80,7 +80,7 @@ int main()
               condBelief = 1;
             else
             {
-              cond_matrix.fillingConditionedVecRandom(b_param);
+              cond_matrix.fillingConditionedVec(b_param);
               blB = cond_matrix.calBeliefB();
               compA = cond_matrix.calBeliefComp();
               strad = cond_matrix.calStrad();

@@ -163,9 +163,9 @@ void CondMatrix::readSingletons(void)
 }
 
 //**************************************************************************************************
-// Filling conditioned vector random, for experiments 
+// Filling conditioned vector, for experiments 
 //**************************************************************************************************
-int CondMatrix::fillingConditionedVecRandom(vector<int> & conditionedVec)
+int CondMatrix::fillingConditionedVec(vector<int> & conditionedVec)
 {
 	conditioned_ele_vec.clear();
 	no_sin_conditioned = conditionedVec.size();
@@ -178,7 +178,29 @@ int CondMatrix::fillingConditionedVecRandom(vector<int> & conditionedVec)
 	if (debug)
 		cout << "Belief ele vec size : " << conditioned_ele_vec.size() << endl;
 
-	return conditioned_ele_vec.size();
+	return 0; // return 0 for true
+}
+
+//**************************************************************************************************
+// Filling conditioned vector return belief index, for experiments 
+//**************************************************************************************************
+int CondMatrix::fillingConditionedVecRetBlIndex(vector<int> & conditionedVec)
+{
+  conditioned_ele_vec.clear();
+  no_sin_conditioned = conditionedVec.size();
+  int belief_index = 0, power_val = 0;
+
+  for (vector<int>::iterator it = conditionedVec.begin(); it != conditionedVec.end(); ++it)
+  {
+    power_val = power[*it];
+    conditioned_ele_vec.push_back(power_val);  
+    belief_index += power_val;
+  }
+
+  if (debug)
+    cout << "Belief ele vec size : " << conditioned_ele_vec.size() << endl;
+
+  return belief_index;
 }
 
 //**************************************************************************************************
