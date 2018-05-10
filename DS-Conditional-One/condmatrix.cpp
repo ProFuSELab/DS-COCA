@@ -408,9 +408,9 @@ void CondMatrix::printFocalElements(void)
 	for (int row = 0; row < pow(2, no_sin_complement); row++)
 	{
 		for (int col = 0; col < pow(2, no_sin_conditioning); col++)
-			cout << "mass( " << row << " : " << col << " ) \t: " 
-				<< focal_element[row][col] << " " << endl;
-		cout << endl;
+			cout << "mass(" << row << ":" << col << "): " 
+				<< focal_element[row][col] << " \t";
+		cout << endl << endl;
 	}
 }
 
@@ -422,9 +422,9 @@ void CondMatrix::printFocalElementsNormalized(void)
 	for (int row = 0; row < pow(2, no_sin_complement); row++)
 	{
 		for (int col = 0; col < pow(2, no_sin_conditioning); col++)
-			cout << "mass( " << row << " : " << col << " ) \t: " 
-				<< focal_element[row][col] / normalizing_const << " " << endl;
-		cout << endl;
+			cout << "mass(" << row << ":" << col << "): " 
+				<< focal_element[row][col] / normalizing_const << " \t";
+		cout << endl << endl;
 	}
 }
 
