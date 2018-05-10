@@ -63,7 +63,7 @@ int main()
 			{       
 				for (int b = 1; b <= a; b = b + 1)
 				{       
-					for (int brounds = 0; brounds <= 20000 / ((fod - 1) * (fod - 1)); brounds++)
+					for (int brounds = 0; brounds <= 20000 / ((fod) * (fod)); brounds++)
 					//for (int brounds = 0; brounds < 1; brounds++)
 					{       
 						//cout << "A : " << a << "B : " << b << endl;;
