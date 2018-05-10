@@ -31,7 +31,7 @@
 //**************************************************************************************************
 
 
-#include "condmatrix.h"
+#include "../../condmatrix.h"
 
 using namespace std;
 int arr[20];
@@ -116,7 +116,7 @@ int main()
             beliefs[(int)pow(2, a) - 1] = 1;
           else
           {
-            belief_index = cond_matrix.fillingConditionedVecRandom(b_param);
+            belief_index = cond_matrix.fillingConditionedVecRetBlIndex(b_param);
             blB = cond_matrix.calBeliefB();
             compA = cond_matrix.calBeliefComp();
             strad = cond_matrix.calStrad();
