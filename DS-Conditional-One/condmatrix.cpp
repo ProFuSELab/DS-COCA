@@ -438,14 +438,14 @@ double CondMatrix::calArbitraryMass(double beliefcomp, int mass_index)
   double computed_mass_value = 0.0; //if you need use a vector or other method if you need
 
   int size_of_regap_abar = power[no_sin_complement];
-  cout << "Col index: " << mass_index << endl;
+  // cout << "Col index: " << mass_index << endl;
   for (int i = 0; i < size_of_regap_abar; i++)
   {
-    cout << "Focal ele: " << focal_element[i][mass_index] / normalizing_const << endl;
+    // cout << "Focal ele: " << focal_element[i][mass_index] / normalizing_const << endl;
     mass_col += focal_element[i][mass_index];
   }
   computed_mass_value = mass_col / (normalizing_const - beliefcomp);
-  cout << "Conditional_mass: " << computed_mass_value << endl << endl;
+  // cout << "Conditional_mass: " << computed_mass_value << endl << endl;
   return computed_mass_value;     // returns the last value
 }
 
