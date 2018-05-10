@@ -57,7 +57,7 @@ int main()
 			cond_matrix.newMatrix(fod - a, a);
 			cond_matrix.genIncreasingMassValues();
       cout << "Fod size: " << fod << " |A|: " << a << endl;
-		  //cond_matrix.printFocalElements();
+		  // cond_matrix.printFocalElements();
       cond_matrix.printFocalElementsNormalized();
 			for (int arounds = 0; arounds < 1; arounds++)
 			{       
@@ -77,18 +77,15 @@ int main()
 						}
 						
 						cond_begin = clock();
-            if (b_param.size() == a)
-              condMass = 1;
-            else
-            {
-              mass_index = cond_matrix.fillingConditionedVecRetBlIndex(b_param);
-              compA = cond_matrix.calBeliefComp();
-              condMass = cond_matrix.calArbitraryMass(compA, mass_index);
-              cond_end = clock();
-            }
+            mass_index = cond_matrix.fillingConditionedVecRetBlIndex(b_param);
+            compA = cond_matrix.calBeliefComp();
+            condMass = cond_matrix.calArbitraryMass(compA, mass_index);
+            cond_end = clock();
 
+            /*
             if (b_param.size() == a)
               cout << "Conditional_mass: " << condMass << endl;
+              */
 					//	cout << "Fod size : " << fod <<  "\t|A| : " << a << "\t|B| : " << b << "\tBl (B) :" << blB << "\t Nlz : " << nlz << "\t Bl ({A}) : " << compA << "\tS({A};B) : " << strad << "\tCond Belief : " << condBelief << endl;
 						round_count++;
 						//cout << round_count << endl;
@@ -100,7 +97,7 @@ int main()
 				//cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t\tTime spent: " << total_time * 1000 / (a - 1) << endl; // to get values in micro sec multiplied by 1000000 and divided by 1000
 			}
 		}
-		//cout << "Fod size: " << fod << "\tRounds: " << round_count << "\tAverage time spent: " << (total_time / round_count) * 1000000 << " microseconds" << endl; // to get values in microseconds multiplied by 1000000
+		// cout << "Fod size: " << fod << "\tRounds: " << round_count << "\tAverage time spent: " << (total_time / round_count) * 1000000 << " microseconds" << endl; // to get values in microseconds multiplied by 1000000
 	}
         return 0;
 }
