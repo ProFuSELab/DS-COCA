@@ -102,7 +102,7 @@ int main()
 				//cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t\tTime spent: " << total_time * 1000 / (a - 1) << endl; // to get values in micro sec multiplied by 1000000 and divided by 1000
 			}
 		}
-		cout << "Fod size: " << fod << "\tRounds: " << round_count << "\tAverage Time spent: " << (total_time / round_count) * 1000000 << " microseconds" << endl; // to get values in microseconds multiplied by 1000000
+		cout << "Fod size: " << fod << "\tRounds: " << round_count << "\tAverage time spent: " << (total_time / round_count) * 1000000 << " microseconds" << endl; // to get values in microseconds multiplied by 1000000
 	}
         return 0;
 }
