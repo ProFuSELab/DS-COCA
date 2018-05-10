@@ -73,7 +73,7 @@ int main()
 	cond_matrix.debugOff();
 
 	// for (int fod = 5; fod <= 20; fod += 5)
-	for (int fod = 2; fod <= 12; fod += 2)
+	for (int fod = 2; fod <= 6; fod += 2)
 	{       
 		round_count = 0;
 		total_time = 0.0;
@@ -83,7 +83,9 @@ int main()
 			cond_matrix.clearMatrix();
 			cond_matrix.newMatrix(fod - a, a);
 			cond_matrix.genIncreasingMassValues();
-		//	cond_matrix.printFocalElements();
+      cout << "Fod size: " << fod << " |A|: " << a << endl;
+		  // cond_matrix.printFocalElements();
+      cond_matrix.printFocalElementsNormalized();
 			all_bs.clear();
 			for (int t = 1; t <= a; t++)
 				new_arr(0, a, t); 
@@ -111,36 +113,37 @@ int main()
 					}
 					*/
 					
-					
-					cond_begin = clock();
-					belief_index = cond_matrix.fillingConditionedVecRetBlIndex(b_param);
-					blB = cond_matrix.calBeliefB();
-					compA = cond_matrix.calBeliefComp();
-					strad = cond_matrix.calStrad();
-					nlz = cond_matrix.getNConst();
-					condBelief = blB / (nlz - compA - strad);
-					beliefs[belief_index] = condBelief;
-					cond_end = clock();
+          cond_begin = clock();
+          if (b_param.size() == a)
+            beliefs[cond_matrix.getPower(a) - 1] = 1;
+				  else	
+          {
+            belief_index = cond_matrix.fillingConditionedVecRetBlIndex(b_param);
+            blB = cond_matrix.calBeliefB();
+            compA = cond_matrix.calBeliefComp();
+            strad = cond_matrix.calStrad();
+            nlz = cond_matrix.getNConst();
+            condBelief = blB / (nlz - compA - strad);
+            beliefs[belief_index] = condBelief;
+          }
+          cond_end = clock();
 				//	cout << "Fod size : " << fod <<  "\t|A| : " << a << "\t|B| : " << b << "\tBl (B) :" << blB << "\t Nlz : " << nlz << "\t Bl ({A}) : " << compA << "\tS({A};B) : " << strad << "\tCond Belief : " << condBelief << endl;
 					//cout << round_count << endl;
 					total_time += (double)(cond_end - cond_begin) / CLOCKS_PER_SEC; 
 					//cout << "Index : " << belief_index << "\t Cond Belief : " << condBelief << endl;
 				}
 			//	cout << all_bs.size() << "\t" << total_time << "\t" << endl;
-				/*
 				for (int m = 0; m <= all_bs.size(); m++)
 					cout << m << " : " << beliefs[m] << endl;
-				*/
 				//cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t|B|: " << b << "\t\tTime spent: " << total_time * 1000000 << endl; // to get values in micro sec multiplied by 1000000 and divided by 1000
 				//}
 				//cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t\tTime spent: " << total_time * 1000 / (a - 1) << endl; // to get values in micro sec multiplied by 1000000 and divided by 1000
 				cond_begin = clock();
 				for (int i = a - 1; i >= 0; i--)
 				{
-					for (int j = 0; j * pow(2, i) < pow(2, a); j += 2) 
-						for (int k = 0; k < pow(2, i); k++)
-							beliefs[j * (int)pow(2, i) + k + (int)pow(2, i)] -= beliefs[j * (int)pow(2, i) + k];
-					/*
+					for (int j = 0; j * cond_matrix.getPower(i) < cond_matrix.getPower(a); j += 2) 
+						for (int k = 0; k < cond_matrix.getPower(i); k++)
+							beliefs[j * cond_matrix.getPower(i) + k + cond_matrix.getPower(i)] -= beliefs[j * cond_matrix.getPower(i) + k];
 					double test_tot = 0;
 					for (int m = 0; m < pow(2, a); m++)
 					{
@@ -149,14 +152,13 @@ int main()
 					}
 					cout << endl;
 					cout << test_tot << "..." << endl;
-					*/
 				}
 				cond_end = clock();
 				total_time += (double)(cond_end - cond_begin) / CLOCKS_PER_SEC; 
 
 			}
 		}
-		cout << "Fod size: " << fod << "\tRounds: " << round_count << "\t\tAverage Time spent: " << (total_time / round_count) * 1000000 << endl; // to get values in micro sec multiplied by 1000000 and divided by 1000
+		cout << "Fod size: " << fod << "\tRounds: " << round_count << "\tAverage time spent: " << (total_time / round_count) * 1000000 << " microseconds" << endl; // to get values in microseconds multiplied by 1000000
 	}
         return 0;
 }
