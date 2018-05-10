@@ -115,7 +115,7 @@ int main()
 					
 					cond_begin = clock();
           if (b_param.size() == a)
-            beliefs[(int)pow(2, a) - 1] = 1;
+            beliefs[cond_matrix.getPower(a) - 1] = 1;
           else
           {
             belief_index = cond_matrix.fillingConditionedVecRetBlIndex(b_param);

@@ -48,6 +48,7 @@ class CondMatrix
 	public:
 		CondMatrix(void);
 		CondMatrix(int sin_complement, int sin_conditioning);
+    int getPower(int p);
 		void clearMatrix();
 		void newMatrix(int sin_complement, int sin_conditioning);
 		void debugOn(void);
