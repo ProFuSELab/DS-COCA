@@ -38,15 +38,15 @@ using namespace std;
 int main()
 {
         pair<int, int> index;
-        double experiment_time = 0.0, total_time = 0.0, blB = 0.0, compA = 0.0, strad = 0.0, condBelief = 0.0, nlz = 0.0;
+        double experiment_time = 0.0, total_time = 0.0, blB = 0.0, compA = 0.0, strad = 0.0, condMass = 0.0, condBelief = 0.0, nlz = 0.0;
 	clock_t cond_begin, cond_end;
 	vector <int> b_param;
-	int rem_ele, round_count = 0;
+	int rem_ele, round_count = 0, mass_index = 0;
         CondMatrix cond_matrix;
         cond_matrix.debugOff();
 
 	// for (int fod = 5; fod <= 20; fod += 5)
-	for (int fod = 2; fod <= 20; fod += 2)
+	for (int fod = 2; fod <= 6; fod += 2)
 	{       
 		round_count = 0;
 		total_time = 0.0;
@@ -56,10 +56,12 @@ int main()
 			cond_matrix.clearMatrix();
 			cond_matrix.newMatrix(fod - a, a);
 			cond_matrix.genIncreasingMassValues();
-		//	cond_matrix.printFocalElements();
+      cout << "Fod size: " << fod << " |A|: " << a << endl;
+		  //cond_matrix.printFocalElements();
+      cond_matrix.printFocalElementsNormalized();
 			for (int arounds = 0; arounds < 1; arounds++)
 			{       
-				for (int b = 1; b < a; b = b + 1)
+				for (int b = 1; b <= a; b = b + 1)
 				{       
 					for (int brounds = 0; brounds <= 20000 / ((fod - 1) * (fod - 1)); brounds++)
 					//for (int brounds = 0; brounds < 1; brounds++)
@@ -73,12 +75,20 @@ int main()
 							rem_ele = rand() % (a + 1 - rem);
 							b_param.erase (b_param.begin() + rem_ele);
 						}
-						cond_matrix.fillingConditionedVec(b_param);
 						
 						cond_begin = clock();
-						compA = cond_matrix.calBeliefComp();
-						compA = cond_matrix.calArbitraryMass(compA);
-						cond_end = clock();
+            if (b_param.size() == a)
+              condMass = 1;
+            else
+            {
+              mass_index = cond_matrix.fillingConditionedVecRetBlIndex(b_param);
+              compA = cond_matrix.calBeliefComp();
+              condMass = cond_matrix.calArbitraryMass(compA, mass_index);
+              cond_end = clock();
+            }
+
+            if (b_param.size() == a)
+              cout << "Conditional_mass: " << condMass << endl;
 					//	cout << "Fod size : " << fod <<  "\t|A| : " << a << "\t|B| : " << b << "\tBl (B) :" << blB << "\t Nlz : " << nlz << "\t Bl ({A}) : " << compA << "\tS({A};B) : " << strad << "\tCond Belief : " << condBelief << endl;
 						round_count++;
 						//cout << round_count << endl;
@@ -90,7 +100,7 @@ int main()
 				//cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t\tTime spent: " << total_time * 1000 / (a - 1) << endl; // to get values in micro sec multiplied by 1000000 and divided by 1000
 			}
 		}
-		cout << "Fod size: " << fod << "\tRounds: " << round_count << "\tAverage time spent: " << (total_time / round_count) * 1000000 << " microseconds" << endl; // to get values in microseconds multiplied by 1000000
+		//cout << "Fod size: " << fod << "\tRounds: " << round_count << "\tAverage time spent: " << (total_time / round_count) * 1000000 << " microseconds" << endl; // to get values in microseconds multiplied by 1000000
 	}
         return 0;
 }

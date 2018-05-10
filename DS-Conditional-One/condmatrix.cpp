@@ -409,6 +409,47 @@ double CondMatrix::calStrad(void)
 }
 
 //**************************************************************************************************
+// Calculating all conditional masses
+//**************************************************************************************************
+double CondMatrix::calAllMasses(double beliefcomp)
+{
+  double mass_col = 0.0;
+  double computed_mass_value = 0.0; //if you need use a vector or other method if you need
+
+  for (int j = 1; j < pow(2, no_sin_conditioning); j++)
+  {
+    mass_col = 0.0;
+    for (int i = 0; i < pow(2, no_sin_complement); i++)
+    {
+      mass_col += focal_element[i][j];
+    }
+    computed_mass_value = mass_col / (normalizing_const - beliefcomp);
+    //cout << computed_mass_value << endl;
+  }
+  return computed_mass_value;     // returns the last value
+}
+
+//**************************************************************************************************
+// Calculating arbitrary conditional masses
+//**************************************************************************************************
+double CondMatrix::calArbitraryMass(double beliefcomp, int mass_index)
+{
+  double mass_col = 0.0;
+  double computed_mass_value = 0.0; //if you need use a vector or other method if you need
+
+  int size_of_regap_abar = power[no_sin_complement];
+  cout << "Mass_index: " << mass_index << endl;
+  for (int i = 0; i < size_of_regap_abar; i++)
+  {
+    cout << "i: " << focal_element[i][mass_index] << endl;
+    mass_col += focal_element[i][mass_index];
+  }
+  computed_mass_value = mass_col / (normalizing_const - beliefcomp);
+  cout << "Conditional_mass: " << computed_mass_value << endl << endl;
+  return computed_mass_value;     // returns the last value
+}
+
+//**************************************************************************************************
 // Print focal elements, without normalizing
 //**************************************************************************************************
 void CondMatrix::printFocalElements(void)
