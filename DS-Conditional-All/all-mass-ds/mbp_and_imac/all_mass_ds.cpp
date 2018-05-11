@@ -77,7 +77,7 @@ int main()
 						cond_begin = clock();
 						cond_matrix.fillingConditionedVec(b_param);
 						compA = cond_matrix.calBeliefComp();
-						cond_matrix.calAllMasses(compA);
+						// cond_matrix.calAllMasses(compA);
 						cout << cond_matrix.calAllMasses(compA).size() << endl;
 						cond_end = clock();
 					//	cout << "Fod size : " << fod <<  "\t|A| : " << a << "\t|B| : " << b << "\tBl (B) :" << blB << "\t Nlz : " << nlz << "\t Bl ({A}) : " << compA << "\tS({A};B) : " << strad << "\tCond Belief : " << condBelief << endl;
