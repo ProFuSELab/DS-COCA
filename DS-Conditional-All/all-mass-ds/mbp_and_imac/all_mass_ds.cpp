@@ -1,6 +1,6 @@
 //**************************************************************************************************
 //
-// PROJECT  : DS-Conditional-One 
+// PROJECT  : DS-Conditional-All 
 // CLASS    : CondMatrix 
 // PURPOSE  : Simulate
 //
@@ -29,6 +29,7 @@
 // May 2018               Lalintha Polpitiya      All mass computations DS
 //
 //**************************************************************************************************
+
 
 #include "../../condmatrix.h"
 

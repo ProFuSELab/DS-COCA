@@ -1,6 +1,6 @@
 //**************************************************************************************************
 //
-// PROJECT  : DS-Conditional-All
+// PROJECT  : DS-Conditional-All 
 // CLASS    : CondMatrix 
 // PURPOSE  : Simulate
 //
@@ -26,7 +26,7 @@
 //
 // Date                   Researcher              Descriptions
 // --------------------   --------------------    --------------------
-// May 2018               Lalintha Polpitiya      All belief computations FH and DS 
+// May 2018               Lalintha Polpitiya      All mass computations FH and DS - FMT
 //
 //**************************************************************************************************
 
