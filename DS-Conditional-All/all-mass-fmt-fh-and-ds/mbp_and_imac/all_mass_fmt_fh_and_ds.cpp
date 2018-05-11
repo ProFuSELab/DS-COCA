@@ -45,7 +45,7 @@ int main()
   CondMatrix cond_matrix;
   cond_matrix.debugOff();
 
-  for (int fod = 2; fod <= 6; fod += 2)
+  for (int fod = 2; fod <= 16; fod += 2)
   {       
     round_count = 0;
     total_time = 0.0;
@@ -54,9 +54,9 @@ int main()
       cond_matrix.clearMatrix();
       cond_matrix.newMatrix(fod - a, a);
       cond_matrix.genIncreasingMassValues();
-      cout << "Fod size: " << fod << " |A|: " << a << endl;
+      // cout << "Fod size: " << fod << " |A|: " << a << endl;
       // cond_matrix.printFocalElements();
-      cond_matrix.printFocalElementsNormalized();
+      // cond_matrix.printFocalElementsNormalized();
 
       for (int brounds = 0; brounds <= 10000 / fod; brounds++)
       {       
