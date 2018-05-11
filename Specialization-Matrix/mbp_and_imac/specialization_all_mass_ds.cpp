@@ -1,3 +1,35 @@
+//**************************************************************************************************
+//
+// PROJECT  : Specialization Matrix 
+// CLASS    : Specialization Matrix 
+// PURPOSE  : Simulate
+//
+//**************************************************************************************************
+//
+// Copyright (c) 2018 ProFuSE Lab - University of Miami
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+//
+//
+// REVISIONS
+//
+// Date                   Researcher              Descriptions
+// --------------------   --------------------    --------------------
+// May 2018               Lalintha Polpitiya      Specialization Matrix (Smet's approach)
+//
+//**************************************************************************************************
+
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -11,6 +43,7 @@ vector<double> focal_element;
 vector<double> conditioned_element;
 double Nlz = 0.0;
 int cur_fod = 0, arr[20];
+int pow_fod = 0;
 
 void A_props(int start, int tot, int k)
 {
@@ -81,6 +114,9 @@ void rand_focals()
 
 void print_focals()
 {
+	for (int i = 0; i < pow(2, cur_fod); i++)
+		focal_element[i] /= Nlz;
+  Nlz = 1.0;
 	cout << endl;
 	for (int i = 0; i < pow(2, cur_fod); i++)
 		cout << focal_element[i] << " ";
@@ -126,8 +162,7 @@ void spe_multi()
 {
 	for (int i = 0; i < pow(2, cur_fod); i++)
 		for (int j = i; j < pow(2, cur_fod); j++)
-			if (spe_matrix[i][j])
-				conditioned_element[i] += focal_element[j];
+				conditioned_element[i] += spe_matrix[i][j] * focal_element[j];
 }
 
 void normalized()
@@ -166,24 +201,25 @@ int main()
 		{
 			roundct++;
 			init_mat(fod);	
-			//print_mat();
+			// print_mat();
 			rand_focals();
 			create_A_props();
 			rand_prop = rand() % A_vals.size();
+
 			cond_begin = clock();
 			prep_spe(prop_int_val(rand_prop));
-			//print_mat();
-			//print_focals();
-			//print_nlz();
-			//print_A_props();
+			// print_mat();
+			// print_focals();
+			// print_nlz();
+			// print_A_props();
 			spe_multi();
-			//print_conditioned_values();
+			// print_conditioned_values();
 			normalized();
-			//print_conditioned_values();
+			// print_conditioned_values();
 			cond_end = clock();
 			total_time += (double)(cond_end - cond_begin) / CLOCKS_PER_SEC;
 		}
-		cout << "Fod size: " << fod << "\tRounds: " << roundct << "\t\tAverage Time spent: " << (total_time / roundct) * 1000000 << endl;
+		cout << "Fod size: " << fod << "\tRounds: " << roundct << "\tAverage time spent: " << (total_time / roundct) * 1000000 << " microseconds" << endl;
 	}
 	
 	return 0;
