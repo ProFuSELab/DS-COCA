@@ -54,7 +54,7 @@ int main()
       cond_matrix.newMatrix(fod - a, a);
       cond_matrix.genIncreasingMassValues();
       cout << "Fod size: " << fod << " |A|: " << a << endl;
-      cond_matrix.printFocalElements();
+      // cond_matrix.printFocalElements();
       cond_matrix.printFocalElementsNormalized();
 
       for (int brounds = 0; brounds <= 10000 / fod; brounds++)
