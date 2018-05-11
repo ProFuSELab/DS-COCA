@@ -430,7 +430,7 @@ vector<double> CondMatrix::calAllMasses(double beliefcomp)
     }
     computed_mass_value = mass_col / (normalizing_const - beliefcomp);
     mass_vec.push_back(computed_mass_value);
-    cout << computed_mass_value << " ";
+    // cout << computed_mass_value << " ";
   }
   return mass_vec;     // returns the last value
 }

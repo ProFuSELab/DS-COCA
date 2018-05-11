@@ -45,7 +45,7 @@ int main()
         cond_matrix.debugOff();
 
 	// for (int fod = 5; fod <= 20; fod += 5)
-	for (int fod = 2; fod <= 6; fod += 2)
+	for (int fod = 2; fod <= 18; fod += 2)
 	{       
 		round_count = 0;
 		total_time = 0.0;
@@ -55,14 +55,14 @@ int main()
 			cond_matrix.clearMatrix();
 			cond_matrix.newMatrix(fod - a, a);
 			cond_matrix.genIncreasingMassValues();
-      cout << "Fod size: " << fod << " |A|: " << a << endl;
+      // cout << "Fod size: " << fod << " |A|: " << a << endl;
 		  // cond_matrix.printFocalElements();
-      cond_matrix.printFocalElementsNormalized();
+      // cond_matrix.printFocalElementsNormalized();
 			for (int arounds = 0; arounds < 1; arounds++)
 			{       
-				for (int b = 1; b < a; b = b + 1)
+				for (int b = 1; b <= a; b = b + 1)
 				{       
-					for (int brounds = 0; brounds <= 20000 / ((fod - 1) * (fod - 1)); brounds++)
+					for (int brounds = 0; brounds <= 20000 / ((fod) * (fod)); brounds++)
 					{       
 						//cout << "A : " << a << "B : " << b << endl;;
 						b_param.clear();
@@ -73,12 +73,12 @@ int main()
 							rem_ele = rand() % (a + 1 - rem);
 							b_param.erase (b_param.begin() + rem_ele);
 						}
-						
-						cond_begin = clock();
 						cond_matrix.fillingConditionedVec(b_param);
+
+						cond_begin = clock();
 						compA = cond_matrix.calBeliefComp();
-						// cond_matrix.calAllMasses(compA);
-						cout << cond_matrix.calAllMasses(compA).size() << endl;
+						cond_matrix.calAllMasses(compA);
+						// cout << cond_matrix.calAllMasses(compA).size() << endl;
 						cond_end = clock();
 					//	cout << "Fod size : " << fod <<  "\t|A| : " << a << "\t|B| : " << b << "\tBl (B) :" << blB << "\t Nlz : " << nlz << "\t Bl ({A}) : " << compA << "\tS({A};B) : " << strad << "\tCond Belief : " << condBelief << endl;
 						round_count++;
@@ -91,7 +91,7 @@ int main()
 				//cout << "Fod size: " << fod <<  "\t|A|: " << a << "\t\tTime spent: " << total_time * 1000 / (a - 1) << endl; // to get values in micro sec multiplied by 1000000 and divided by 1000
 			}
 		}
-		// cout << "Fod size: " << fod << "\tRounds: " << round_count << "\tAverage time spent: " << (total_time / round_count) * 1000000 << endl; // to get values in microseconds multiplied by 1000000
+		cout << "Fod size: " << fod << "\tRounds: " << round_count << "\tAverage time spent: " << (total_time / round_count) * 1000000 << " microseconds" << endl; // to get values in microseconds multiplied by 1000000
 	}
         return 0;
 }
