@@ -65,6 +65,10 @@ class CondMatrix
     double calBeliefComp(void);
     double calStrad(void);
     std::vector<double> calAllMasses(double beliefcomp);
+    void computeGammaVals(void);
+    void FMTGammatoPi(void);
+    void FMTMasstoBl(void);
+    std::vector<double> AllCondBlDSAll(void);
     double calArbitraryMass(double beliefcomp, int mass_index);
     void printFocalElements(void);
     void printFocalElementsNormalized(void);
@@ -81,6 +85,8 @@ class CondMatrix
     std::vector<std::vector<float> > focal_element;
     std::vector<int> REGAP_index;
     std::vector<int> power;
+    std::vector<double> gamma_all;
+    std::vector<double> belief_all;
     double normalizing_const;
     bool debug;
     clock_t begin, end;

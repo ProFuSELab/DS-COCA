@@ -436,6 +436,89 @@ vector<double> CondMatrix::calAllMasses(double beliefcomp)
 }
 
 //**************************************************************************************************
+// Calculating all Gamma values 
+//**************************************************************************************************
+void CondMatrix::computeGammaVals(void)
+{
+  gamma_all.clear();
+  double mass_col = 0.0;
+
+  int size_of_regap_a_plus_one = power[no_sin_conditioning]; 
+  int size_of_regap_abar_plus_one = power[no_sin_complement];
+
+  for (int j = 0; j < size_of_regap_a_plus_one; j++) // note that here j starts from 0!!
+  {
+    mass_col = 0.0;
+    for (int i = 1; i < size_of_regap_abar_plus_one; i++) // not that here i starts from 1!!
+    {
+      mass_col += focal_element[i][j];
+    }
+    gamma_all.push_back(mass_col);
+  }
+}
+
+//**************************************************************************************************
+// Calculating all Pi values 
+//**************************************************************************************************
+void CondMatrix::FMTGammatoPi(void)
+{
+  if (no_sin_complement > 0)
+  {
+    cout << "FMTGammatoPi:" << endl;
+    for (int m = 0; m < pow(2, no_sin_conditioning); m++)
+      cout << gamma_all[m] << " ";
+    cout << endl;
+    for (int i = 0; i < no_sin_conditioning; i++)
+    {
+      for (int j = 0; j < pow(2, no_sin_conditioning - i); j += 2)  
+        for (int k = 0; k < pow(2, i); k++)
+          gamma_all[(j + 1) * (int)pow(2, i) + k] += gamma_all[j * (int)pow(2, i) + k]; 
+      for (int m = 0; m < pow(2, no_sin_conditioning); m++)
+        cout << gamma_all[m] << " ";
+      cout << endl;
+    }
+  }
+}
+
+//**************************************************************************************************
+// Calculating all bl values 
+//**************************************************************************************************
+void CondMatrix::FMTMasstoBl(void)
+{
+  cout << "FMTMasstoBl:" << endl;
+  belief_all.clear();
+  for (int m = 0; m < pow(2, no_sin_conditioning); m++)
+    belief_all.push_back(focal_element[0][m]);
+
+  for (int m = 0; m < pow(2, no_sin_conditioning); m++)
+    cout << belief_all[m] << " ";
+  cout << endl;
+  for (int i = 0; i < no_sin_conditioning; i++)
+  {
+    for (int j = 0; j < pow(2, no_sin_conditioning - i); j += 2)  
+      for (int k = 0; k < pow(2, i); k++)
+        belief_all[(j + 1) * (int)pow(2, i) + k] += belief_all[j * (int)pow(2, i) + k]; 
+    for (int m = 0; m < pow(2, no_sin_conditioning); m++)
+      cout << belief_all[m] << " ";
+    cout << endl;
+  }
+}
+
+//**************************************************************************************************
+// Calculating all belief conditionals DS-Conditional-All
+//**************************************************************************************************
+vector<double> CondMatrix::AllCondBlDSAll(void)
+{
+  for (int m = 0; m < pow(2, no_sin_conditioning); m++)
+  {
+    belief_all[m] = belief_all[m] / (normalizing_const - gamma_all[m]); // after FMT gamma_all contains Pi values
+    cout << belief_all[m] << " ";
+  }
+  cout << endl;
+  return belief_all;
+}
+
+//**************************************************************************************************
 // Calculating arbitrary conditional masses
 //**************************************************************************************************
 double CondMatrix::calArbitraryMass(double beliefcomp, int mass_index)
