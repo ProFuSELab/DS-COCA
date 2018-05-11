@@ -1,6 +1,6 @@
 //**************************************************************************************************
 //
-// PROJECT  : DS-Condtional-One 
+// PROJECT  : DS-Conditional-One 
 // CLASS    : CondMatrix 
 // PURPOSE  : Simulate
 //
