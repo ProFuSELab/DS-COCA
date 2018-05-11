@@ -464,18 +464,18 @@ void CondMatrix::FMTGammatoPi(void)
 {
   if (no_sin_complement > 0)
   {
-    cout << "FMTGammatoPi:" << endl;
-    for (int m = 0; m < pow(2, no_sin_conditioning); m++)
-      cout << gamma_all[m] << " ";
-    cout << endl;
+    // cout << "FMTGammatoPi:" << endl;
+    // for (int m = 0; m < pow(2, no_sin_conditioning); m++)
+      // cout << gamma_all[m] << " ";
+    // cout << endl;
     for (int i = 0; i < no_sin_conditioning; i++)
     {
       for (int j = 0; j < pow(2, no_sin_conditioning - i); j += 2)  
         for (int k = 0; k < pow(2, i); k++)
           gamma_all[(j + 1) * (int)pow(2, i) + k] += gamma_all[j * (int)pow(2, i) + k]; 
-      for (int m = 0; m < pow(2, no_sin_conditioning); m++)
-        cout << gamma_all[m] << " ";
-      cout << endl;
+      // for (int m = 0; m < pow(2, no_sin_conditioning); m++)
+        // cout << gamma_all[m] << " ";
+      // cout << endl;
     }
   }
 }
@@ -485,22 +485,22 @@ void CondMatrix::FMTGammatoPi(void)
 //**************************************************************************************************
 void CondMatrix::FMTMasstoBl(void)
 {
-  cout << "FMTMasstoBl:" << endl;
+  // cout << "FMTMasstoBl:" << endl;
   belief_all.clear();
   for (int m = 0; m < pow(2, no_sin_conditioning); m++)
     belief_all.push_back(focal_element[0][m]);
 
-  for (int m = 0; m < pow(2, no_sin_conditioning); m++)
-    cout << belief_all[m] << " ";
-  cout << endl;
+  // for (int m = 0; m < pow(2, no_sin_conditioning); m++)
+    // cout << belief_all[m] << " ";
+  // cout << endl;
   for (int i = 0; i < no_sin_conditioning; i++)
   {
     for (int j = 0; j < pow(2, no_sin_conditioning - i); j += 2)  
       for (int k = 0; k < pow(2, i); k++)
         belief_all[(j + 1) * (int)pow(2, i) + k] += belief_all[j * (int)pow(2, i) + k]; 
-    for (int m = 0; m < pow(2, no_sin_conditioning); m++)
-      cout << belief_all[m] << " ";
-    cout << endl;
+    // for (int m = 0; m < pow(2, no_sin_conditioning); m++)
+      // cout << belief_all[m] << " ";
+    // cout << endl;
   }
 }
 
@@ -511,10 +511,10 @@ vector<double> CondMatrix::AllCondBlDSAll(void)
 {
   for (int m = 0; m < pow(2, no_sin_conditioning); m++)
   {
-    belief_all[m] = belief_all[m] / (normalizing_const - gamma_all[m]); // after FMT gamma_all contains Pi values
-    cout << belief_all[m] << " ";
+    belief_all[m] = belief_all[m] / (normalizing_const - gamma_all[m]); // amma_all -> Pi values
+    // cout << belief_all[m] << " ";
   }
-  cout << endl;
+  // cout << endl;
   return belief_all;
 }
 
