@@ -1,0 +1,6 @@
+Fod size: 2	Rounds: 10018	Average time spent: 2.36764 microseconds
+Fod size: 4	Rounds: 10016	Average time spent: 6.76388 microseconds
+Fod size: 6	Rounds: 10014	Average time spent: 20.8446 microseconds
+Fod size: 8	Rounds: 10016	Average time spent: 75.7637 microseconds
+Fod size: 10	Rounds: 10010	Average time spent: 320.819 microseconds
+Fod size: 12	Rounds: 10008	Average time spent: 1620.61 microseconds
