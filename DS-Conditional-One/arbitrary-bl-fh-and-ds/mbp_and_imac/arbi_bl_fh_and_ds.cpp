@@ -46,7 +46,7 @@ int main()
         cond_matrix.debugOff();
 
 	// for (int fod = 5; fod <= 20; fod += 5)
-	for (int fod = 2; fod <= 20; fod += 2)
+	for (int fod = 2; fod <= 22; fod += 2)
 	{       
 		round_count = 0;
 		total_time = 0.0;
