@@ -1,6 +1,6 @@
 //**************************************************************************************************
 //
-// PROJECT  : DS-Conditional-One
+// PROJECT  : DS-Conditional-All
 // CLASS    : CondMatrix 
 // PURPOSE  : Simulate
 //
@@ -26,7 +26,7 @@
 //
 // Date                   Researcher              Descriptions
 // --------------------   --------------------    --------------------
-// May 2018               Lalintha Polpitiya      DS-Conditional-One 
+// May 2018               Lalintha Polpitiya      DS-Conditional-All
 //
 //**************************************************************************************************
 
@@ -64,7 +64,7 @@ class CondMatrix
     double calBeliefB(void);
     double calBeliefComp(void);
     double calStrad(void);
-    double calAllMasses(double beliefcomp);
+    std::vector<double> calAllMasses(double beliefcomp);
     double calArbitraryMass(double beliefcomp, int mass_index);
     void printFocalElements(void);
     void printFocalElementsNormalized(void);

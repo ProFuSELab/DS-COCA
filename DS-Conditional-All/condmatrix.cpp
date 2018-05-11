@@ -1,6 +1,6 @@
 //**************************************************************************************************
 //
-// PROJECT  : DS-Conditional-One
+// PROJECT  : DS-Conditional-All
 // CLASS    : CondMatrix 
 // PURPOSE  : Simulate
 //
@@ -26,7 +26,7 @@
 //
 // Date                   Researcher              Descriptions
 // --------------------   --------------------    --------------------
-// May 2018               Lalintha Polpitiya      DS-Conditional-One 
+// May 2018               Lalintha Polpitiya      DS-Conditional-All
 //
 //**************************************************************************************************
 
@@ -411,22 +411,28 @@ double CondMatrix::calStrad(void)
 //**************************************************************************************************
 // Calculating all conditional masses
 //**************************************************************************************************
-double CondMatrix::calAllMasses(double beliefcomp)
+vector<double> CondMatrix::calAllMasses(double beliefcomp)
 {
   double mass_col = 0.0;
-  double computed_mass_value = 0.0; //if you need use a vector or other method if you need
+  double computed_mass_value = 0.0;
+  vector<double> mass_vec;
+  mass_vec.push_back(0.0);
 
-  for (int j = 1; j < pow(2, no_sin_conditioning); j++)
+  int size_of_regap_a_plus_one = power[no_sin_conditioning]; 
+  int size_of_regap_abar_plus_one = power[no_sin_complement];
+
+  for (int j = 1; j < size_of_regap_a_plus_one; j++)
   {
     mass_col = 0.0;
-    for (int i = 0; i < pow(2, no_sin_complement); i++)
+    for (int i = 0; i < size_of_regap_abar_plus_one; i++)
     {
       mass_col += focal_element[i][j];
     }
     computed_mass_value = mass_col / (normalizing_const - beliefcomp);
-    //cout << computed_mass_value << endl;
+    mass_vec.push_back(computed_mass_value);
+    cout << computed_mass_value << " ";
   }
-  return computed_mass_value;     // returns the last value
+  return mass_vec;     // returns the last value
 }
 
 //**************************************************************************************************
@@ -435,11 +441,11 @@ double CondMatrix::calAllMasses(double beliefcomp)
 double CondMatrix::calArbitraryMass(double beliefcomp, int mass_index)
 {
   double mass_col = 0.0;
-  double computed_mass_value = 0.0; //if you need use a vector or other method if you need
+  double computed_mass_value = 0.0;
 
-  int size_of_regap_abar = power[no_sin_complement];
+  int size_of_regap_abar_plus_one = power[no_sin_complement];
   // cout << "Col index: " << mass_index << endl;
-  for (int i = 0; i < size_of_regap_abar; i++)
+  for (int i = 0; i < size_of_regap_abar_plus_one; i++)
   {
     // cout << "Focal ele: " << focal_element[i][mass_index] / normalizing_const << endl;
     mass_col += focal_element[i][mass_index];
