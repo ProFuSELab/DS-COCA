@@ -522,6 +522,28 @@ vector<double> CondMatrix::AllCondBlDSAll(void)
 }
 
 //**************************************************************************************************
+// Calculating all mass conditionals DS-Conditional-All for FH and DS, applying FMT
+//**************************************************************************************************
+vector<double> CondMatrix::AllCondMassDSAll(void)
+{
+  int size_of_regap_a_plus_one = power[no_sin_conditioning]; 
+
+  for (int m = 0; m < pow(2, no_sin_conditioning); m++)
+    cout << belief_all[m] << " ";
+  cout << endl;
+  for (int i = no_sin_conditioning - 1; i >= 0; i--)
+  {
+    for (int j = 0; j * power[i] < power[no_sin_conditioning]; j += 2)  
+      for (int k = 0; k < power[i]; k++)
+        belief_all[j * power[i] + k + power[i]] -= belief_all[j * power[i] + k]; 
+      for (int m = 0; m < power[no_sin_conditioning]; m++)
+        cout << belief_all[m] << " ";
+    cout << endl;
+  }
+  return belief_all;
+}
+
+//**************************************************************************************************
 // Calculating arbitrary conditional masses
 //**************************************************************************************************
 double CondMatrix::calArbitraryMass(double beliefcomp, int mass_index)

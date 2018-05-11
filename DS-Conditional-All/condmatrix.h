@@ -69,6 +69,7 @@ class CondMatrix
     void FMTGammatoPi(void);
     void FMTMasstoBl(void);
     std::vector<double> AllCondBlDSAll(void);
+    std::vector<double> AllCondMassDSAll(void);
     double calArbitraryMass(double beliefcomp, int mass_index);
     void printFocalElements(void);
     void printFocalElementsNormalized(void);
