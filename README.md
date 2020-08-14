@@ -7,7 +7,7 @@ If you use the software, we request that the corresponding articles be cited as 
 
 For computing DST operations:
 
-  ```bash
+  ```
   @inproceedings{Polpitiya2016FUSION,
       title = {A Framework for Efficient Computation of Belief Theoretic Operations},
       author = {Polpitiya, Lalintha G. and Premaratne, Kamal and Murthi, Manohar N. and Sarkar, Dilip},
