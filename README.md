@@ -21,7 +21,7 @@ For computing DST operations:
 
 DS-Conditional-One for computing specific DST conditionals:
 
-  ```bash
+  ```
   @inproceedings{Polpitiya2017ISIPTA,
       title = {Efficient Computation of Belief Theoretic Conditionals},
       author = {Polpitiya, Lalintha G. and Premaratne, Kamal and Murthi, Manohar N. and Sarkar, Dilip},
@@ -35,7 +35,7 @@ DS-Conditional-One for computing specific DST conditionals:
 
 DS-Conditional-All for computing all DST conditionals:
 
-  ```bash
+  ```
   @inproceedings{Polpitiya2020ToC,
       title = {Efficient Computation of Conditionals in the {D}empster-{S}hafer Belief Theoretic Framework},
       author = {Polpitiya, Lalintha G. and Premaratne, Kamal and Murthi, Manohar N. and Murrell, Stephen J. and Sarkar, Dilip},
